@@ -1,20 +1,33 @@
 <div class="login-wrapper">
-  <form class="login">
+  <form class="login" [formGroup]="form">
     <label class="title">
       <h3 class="welcome">Welcome to</h3>
       <strong>Pitt <span class="special-letter">Well</span></strong>
       <h5 class="hint">A comprehension well-being assessment system</h5>
     </label>
     <div class="login-group">
-      <input class="username" type="text" id="login_username" placeholder="Username">
-      <input class="password" type="password" id="login_password" placeholder="Password">
+      <input class="username" type="text" id="login_username" placeholder="Username" formControlName="username">
+      <input class="password" type="password" id="login_password" placeholder="Password" formControlName="password">
       <div class="checkbox">
         <input type="checkbox" id="rememberme">
         <label for="rememberme">
           Remember me
         </label>
       </div>
-      <button type="submit" class="btn btn-primary" (click)="login();$event.preventDefault()">Log In</button>
+      <div class="alert alert-danger" *ngIf="invalidLogin">
+        <div class="alert-items">
+          <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+              <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <span class="alert-text">
+                    Username or password is incorrect.
+                </span>
+          </div>
+
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="login();$event.preventDefault()" [disabled]="form.invalid">Log In</button>
     </div>
   </form>
 </div>
