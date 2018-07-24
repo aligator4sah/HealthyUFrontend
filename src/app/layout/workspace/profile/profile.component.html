@@ -1,0 +1,179 @@
+<div class="main-container">
+  <div class="row">
+    <app-complete-card></app-complete-card>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="card-title">
+          <clr-icon shape="user" size="36"></clr-icon> &nbsp;
+          <span>Profile</span>
+        </div>
+
+        <div class="card-block" style="margin-left: 10px">
+
+          <clr-tabs>
+            <clr-tab>
+              <button clrTabLink id="link1">Profile</button>
+              <clr-tab-content id="content1" *clrIfActive="true">
+                <div *ngIf="profileForm">
+                  <form [formGroup]="profileForm">
+                    <section class="form-block">
+                      <div class="form-group">
+                        <label for="empUserName">User name</label>
+                        <label for="empUserName"
+                               aria-haspopup="true"
+                               role="tooltip"
+                               class="tooltip tooltip-validation tooltip-md">
+                          <input type="text" id="empUserName"
+                                 name="username" formControlName="username" disabled>
+                          <span class="tooltip-content"> User Name is Required. </span>
+                        </label>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="empFirstName">First name</label>
+                        <label for="empFirstName"
+                               aria-haspopup="true"
+                               role="tooltip"
+                               class="tooltip tooltip-validation tooltip-md">
+                          <input type="text" id="empFirstName" placeholder="Enter First Name"
+                                 name="firstname" formControlName="firstname">
+                          <span class="tooltip-content"> First Name is Required. </span>
+                        </label>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="empLastName">Last name</label>
+                        <label for="empLastName"
+                               aria-haspopup="true"
+                               role="tooltip"
+                               class="tooltip tooltip-validation tooltip-md">
+                          <input type="text" id="empLastName" placeholder="Enter Last Name"
+                                 name="lastname"
+                                 formControlName="lastname">
+                        </label>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="dateControl">Date of Birth</label>
+                        <input id="dateControl" type="date" clrDate formControlName="dob" required>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="empType">User type</label>
+                        <div class="select">
+                          <select id="empType"
+                                  name="role"
+                                  formControlName="role" required>
+                            <option *ngFor="let type of userType" [value]="type.value">{{type.value}}</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="empGender">Gender</label>
+                        <div class="select">
+                          <select id="empGender"
+                                  name="employeeGender" formControlName="gender" required>
+                            <option *ngFor="let ge of gender" [value]="ge.value">{{ge.value}}</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input id="phone" type="text" formControlName="phone">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="empMarital">Marital Status</label>
+                        <div class="select">
+                          <select id="empMarital"
+                                  name="marital" formControlName="marital" required>
+                            <option *ngFor="let mar of maritals" [value]="mar.value">{{mar.viewValue}}</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <form #form="ngForm" novalidate>
+                        <section class="form-block">
+                          <div class="form-group">
+                            <label>Change Password</label>
+                            <clr-checkbox
+                              name="termsCheckbox"
+                              id="checkrads_11"
+                              [(ngModel)]="changePassword">
+                              Click to change the password.
+                            </clr-checkbox>
+                          </div>
+                        </section>
+                      </form>
+
+                      <div *ngIf="changePassword">
+                        <div class="form-group">
+                          <label for="psd">New Password</label>
+                          <label for="psd"
+                                 aria-haspopup="true"
+                                 role="tooltip"
+                                 class="tooltip tooltip-validation tooltip-md">
+                            <input type="text" id="psd" placeholder="Enter Password"
+                                   name="psd"
+                                   formControlName="psd" required>
+                          </label>
+                        </div>
+                        <div class="form-group">
+                          <label for="repsd">Confirm Password</label>
+                          <label for="repsd"
+                                 aria-haspopup="true"
+                                 role="tooltip"
+                                 class="tooltip tooltip-validation tooltip-md">
+                            <input type="text" id="repsd" placeholder="Reenter Password"
+                                   name="repsd"
+                                   formControlName="repsd" required>
+                          </label>
+                        </div>
+                      </div>
+                    </section>
+                  </form>
+                </div>
+
+                <button class="btn btn-primary" (click)="submitProfile()">Confirm Change</button>
+                <button class="btn btn-success" (click)="goBack()">Back</button>
+              </clr-tab-content>
+            </clr-tab>
+
+            <clr-tab>
+              <button clrTabLink>Security Question</button>
+              <clr-tab-content *clrIfActive>
+                <form [formGroup]="securityForm">
+                  <section class="form-block">
+                    <div *ngFor="let t of time">
+                      <div class="form-group">
+                        <label>{{t.id}} .Security Question</label>
+                        <div class="select">
+                          <select name="secq1"
+                                   [formControlName]="t.qid" required>
+                            <option *ngFor="let ques of secureQue" [value]="ques.value">{{ques.value}}</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label>&nbsp; &nbsp; Security Answer</label>
+                        <input type="text" [formControlName]="t.aid" placeholder="Enter Answer" size="38">
+                      </div>
+                    </div>
+                  </section>
+                </form>
+                <button class="btn btn-primary" (click)="submitSecurity()">Confirm Change</button>
+                <button class="btn btn-success" (click)="goBack()">Back</button>
+              </clr-tab-content>
+            </clr-tab>
+          </clr-tabs>
+
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

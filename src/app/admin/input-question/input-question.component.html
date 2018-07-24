@@ -1,0 +1,205 @@
+<div class="main-container">
+  <div class="row">
+    <app-admin-card></app-admin-card>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+      <!-- input question part -->
+      <div class="card">
+        <div class="card-title">
+          <clr-icon shape="add-text" size="36"></clr-icon> &nbsp;
+          <span>Input New Question</span>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-block">
+          <div class="card-text">
+            <clr-tabs>
+              <clr-tab>
+                <button clrTabLink>Input Section</button>
+                <ng-template [(clrIfActive)]="inputActive">
+                  <clr-tab-content>
+                    <!--begin of the input question -->
+                    <form class="form" [formGroup]="form">
+
+                      <section class="form-block" (ngSubmit)="onSubmit()">
+                        <!--select question type-->
+
+                        <div class="form-group">
+                          <label> Question Category </label>
+                          <!--<div class="radio-inline">-->
+                            <!--<input type="radio" name="quesType" id="t1" value="demographic" formControlName="quesType">-->
+                            <!--<label for="t1">Demographic</label>-->
+                          <!--</div>-->
+                          <div class="radio-inline">
+                            <input type="radio" name="quesType" id="t2" value="questionnaire" formControlName="quesType">
+                            <label for="t2">Questionnaire</label>
+                          </div>
+                        </div>
+                        <!--Input question description-->
+                        <div class="form-group">
+                          <label for="desp">Description</label>
+                          <input id="desp" type="text" formControlName="desp" size="55">
+                        </div>
+                        <!--if question belongs to questionnaire, then select domain-->
+                        <div class="row">
+                        <div *ngIf="isQues">
+                          <!-- Choose domain-->
+                          <div class="form-group">
+                            <label for="domain">Domain</label>
+                            <div class="select">
+                              <select id="domain" name="domain" formControlName="domain">
+                                <option value="Default">Select Question Domain...</option>
+                                <option *ngFor="let dom of domains" [value]="dom.domain">{{dom.domain}}</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <!--Choose question weight-->
+                          <div class="form-group">
+                            <label for="weight">Weight</label>
+                            <input id="weight" type="number" formControlName="weight" size="45">
+                          </div>
+                        </div>
+                        </div>
+                        <!-- end of ngIf-->
+
+                        <!-- Choose question order-->
+                        <div class="row">
+                        <div class="form-group">
+                          <label for="order">Order</label>
+                          <input id="order" type="number" formControlName="order" size="45">
+                        </div>
+                        <!-- Choose answer type-->
+                        <div class="form-group">
+                          <label for="type">Answer Type</label>
+                          <div class="select">
+                            <select id="ansType" name="anstype" formControlName="anstype">
+                              <option value="Default">Select Answer Type...</option>
+                              <option *ngFor="let ans of AnsType" [value]="ans.key">{{ans.value}}</option>
+                            </select>
+                          </div>
+                        </div>
+                        <!-- Choose answer numbers-->
+                        <div *ngIf="isText; else notText">
+                          <div class="form-group" >
+                            <label for="optNum">Answer Number</label>
+                            <input id="optNum" type="number" value="0" size="45" disabled>
+                          </div>
+                        </div>
+                        <ng-template #notText>
+                          <div class="form-group">
+                            <label for="optNum">Answer Number</label>
+                            <input id="optNum" type="number" formControlName="optnum" size="45">
+                          </div>
+                        </ng-template>
+                        </div>
+
+                        <!--if question not text input, generate answer group -->
+                        <div *ngIf="needOptions">
+                          <form class="form" [formGroup]="ansForm">
+                            <div class="form-group row ansGroup" *ngFor="let opt of options">
+                              <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                                <label for="gForm_1">Answer Options {{ opt.key + 1 }}</label>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <input class="form-control" type="number" id="gForm_1" placeholder="Enter Answer Extent"
+                                       size="35" [formControlName]="opt.eid">
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <input class="form-control" type="text" id="gForm_2"
+                                       placeholder="Enter Answer Description" size="55" [formControlName]="opt.key">
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+
+                      </section>
+                      <div class="card-footer">
+                        <button class="btn btn-primary" (click)="confirm()">Next</button>
+                      </div>
+
+                    </form>
+                    <!--end of the input question-->
+                  </clr-tab-content>
+                </ng-template>
+              </clr-tab>
+
+              <clr-tab>
+                <button clrTabLink>Confirm Question</button>
+                <ng-template [(clrIfActive)]="confirmActive">
+                  <clr-tab-content>
+                    <!--begin of the confirm question -->
+                    <div class="question-info">
+                      <!--question category -->
+                      <div class="ques-info">
+                        <h6>Question Category: <span class="confirmation"> Questionnaire</span></h6>
+                      </div>
+
+                      <!--question description -->
+                      <div class="ques-info">
+                        <h6>Question Description:
+                          <span class="confirmation"> {{form.get('desp').value}}</span></h6>
+                      </div>
+
+                      <!--question order-->
+                      <div class="ques-info">
+                        <h6>Question Order:
+                          <span class="confirmation"> {{form.get('order').value}}</span></h6>
+                      </div>
+
+                      <!-- question answer type-->
+                      <div class="ques-info">
+                        <h6>Question Answer Type:
+                          <span class="confirmation"> {{form.get('anstype').value}}</span> </h6>
+                      </div>
+
+                      <!--question domain and weight if needed -->
+                      <div *ngIf="isQues">
+                        <!--domain -->
+                        <div class="ques-info">
+                          <h6>Question Domain:
+                            <span class="confirmation"> {{form.get('domain').value}}</span> </h6>
+                        </div>
+
+                        <!--weight -->
+                        <div class="ques-info">
+                          <h6>Question Weight:
+                            <span class="confirmation"> {{form.get('weight').value}}</span> </h6>
+                        </div>
+                      </div>
+
+                      <!-- answer options if needed -->
+                      <div *ngFor="let opt of options">
+                        <div class="ques-info row">
+                          <h6>Answer Options: {{opt.key + 1}}
+                            <span class="confirmation">Description: {{ opt.value }}</span>
+                            <span class="confirmation">Weight: {{ opt.extent }}</span>
+                          </h6>
+                        </div>
+                      </div>
+
+                    </div>
+                    <!--end of question information -->
+
+                    <div class="card-footer" *ngIf="form.valid && ansForm.valid; else block">
+                      <button class="btn btn-primary" (click)="submit()">Submit</button>
+                      <button class="btn btn-success" (click)="back()">Back</button>
+                    </div>
+                    <ng-template #block>
+                      <button class="btn btn-primary" disabled>Submit</button>
+                      <button class="btn btn-success" (click)="back()">Back</button>
+                    </ng-template>
+
+                    <!-- end of the input question-->
+                  </clr-tab-content>
+                </ng-template>
+              </clr-tab>
+
+            </clr-tabs>
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

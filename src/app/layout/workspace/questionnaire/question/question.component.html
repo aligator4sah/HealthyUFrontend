@@ -1,0 +1,33 @@
+<div [formGroup]="form">
+  <section class="form-block" style="margin-bottom:10px">
+  <label class="ques-label">{{question.id + '. ' + question.label}}</label>
+  <div [ngSwitch]="question.type">
+    <!--text question -->
+    <div class="form-group" *ngSwitchCase="'textbox'">
+      <label for="input1">Input your answer: </label>
+      <input type="text" id="input1" size="15"  [formControlName]="question.id" class="inputbox">
+    </div>
+
+    <!-- dropdown question-->
+    <div class="form-group" *ngSwitchCase="'dropdown'">
+      <label for="select1">Select your answer</label>
+      <div class="select">
+        <select id="select1" [formControlName]="question.id">
+          <option *ngFor="let opt of question.ansOptions" [value]="opt.key">{{opt.value}}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- radio button question-->
+    <div class="form-group" *ngSwitchCase="'radiobutton'">
+      <label>Select you answer:</label>
+      <div class="radio-inline" *ngFor="let opt of question.ansOptions">
+        <input type="radio" [name]="question.id" id="{{question.id}} + {{opt.eid}}" value="{{opt.eid}}" [formControlName]="question.id">
+        <label for="{{question.id}} + {{opt.eid}}">{{opt.value}}</label>
+      </div>
+    </div>
+
+  </div>
+  </section>
+  <!--<div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>-->
+</div>

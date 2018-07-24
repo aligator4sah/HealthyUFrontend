@@ -1,0 +1,39 @@
+.card-title {
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+
+.btn .btn-link .nav-link {
+  font-size: 16px;
+}
+
+.main-container {
+  height: 100%;
+}
+
+.card {
+  width: 1130px;
+  height: 580px;
+}
+
+.question-info {
+  margin-left: 15px;
+  width: 90%;
+}
+
+
+.ques-info {
+  padding-bottom: 10px;
+}
+
+p {
+  margin-top: 5px;
+}
+
+.confirmation {
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #002538;
+}

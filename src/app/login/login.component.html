@@ -1,0 +1,227 @@
+<div class="login-wrapper">
+  <form class="login" [formGroup]="loginForm">
+    <label class="title">
+      <h3 class="welcome">Welcome to</h3>
+      <strong>Pitt <span class="special-letter"> Well </span></strong>
+      <h5 class="hint">A comprehension well-being assessment system</h5>
+    </label>
+    <div class="login-group">
+      <div class="auth-source select">
+        <select id="login-auth-source-1" formControlName="loginRole">
+          <option>Student</option>
+          <option>Staff</option>
+          <option>Faculty</option>
+        </select>
+      </div>
+      <input class="username" type="text" id="login_username" placeholder="Username" formControlName="loginName">
+      <input class="password" type="password" id="login_password" placeholder="Password" formControlName="loginPsd">
+      <div class="checkbox">
+        <input type="checkbox" id="rememberme">
+        <label for="rememberme">
+          Remember me
+        </label>
+      </div>
+      <div class="alert alert-danger" *ngIf="invalidLogin">
+        <div class="alert-items">
+          <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+              <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <span class="alert-text">
+                    Username or password is incorrect.
+                </span>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="submit()" [disabled]="loginForm.invalid">Log In</button>
+      <a routerLink="" class="signup" (click)="signUp()">Sign up</a>
+      <a routerLink="" class="signup" (click)="openForget()">Forget Password</a>
+      <app-forget-psd [basic]="forget"></app-forget-psd>
+      <div *ngIf="isValid">
+        Invalid user name or password
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Register Page-->
+<clr-wizard #wizardlg [(clrWizardOpen)]="lgOpen" clrWizardSize="lg">
+  <clr-wizard-title>User Registration</clr-wizard-title>
+
+  <clr-wizard-button [type]="'cancel'">Cancel</clr-wizard-button>
+  <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
+  <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
+  <clr-wizard-button [type]="'finish'" (click)="register()">Finish</clr-wizard-button>
+
+  <!--<clr-wizard-page [clrWizardPageNextDisabled]="!form1.valid">-->
+  <clr-wizard-page [clrWizardPageNextDisabled]="form1.invalid">
+    <ng-template clrPageTitle>Step 1</ng-template>
+    <form [formGroup]="form1">
+    <section class="form-block">
+      <div class="form-group">
+        <label for="empUserName">User name</label>
+        <label for="empUserName"
+               aria-haspopup="true"
+               role="tooltip"
+               class="tooltip tooltip-validation tooltip-md">
+          <input type="text" id="empUserName" placeholder="Enter Email As Username"
+                 name="username" formControlName="username" required>
+          <span class="tooltip-content"> User Name is Required. </span>
+        </label>
+      </div>
+      <div class="form-group">
+      <label for="empFirstName">First name</label>
+      <label for="empFirstName"
+             aria-haspopup="true"
+             role="tooltip"
+             class="tooltip tooltip-validation tooltip-md">
+        <input type="text" id="empFirstName" placeholder="Enter First Name"
+               name="firstname" formControlName="firstname" required>
+        <span class="tooltip-content"> First Name is Required. </span>
+      </label>
+    </div>
+      <div class="form-group">
+        <label for="empLastName">Last name</label>
+        <label for="empLastName"
+               aria-haspopup="true"
+               role="tooltip"
+               class="tooltip tooltip-validation tooltip-md">
+          <input type="text" id="empLastName" placeholder="Enter Last Name"
+                 name="lastname"
+                 formControlName="lastname">
+          <span class="tooltip-content">
+                    Last Name is Required.
+                </span>
+        </label>
+      </div>
+      <div class="form-group">
+        <label for="psd">Password</label>
+        <label for="psd"
+               aria-haspopup="true"
+               role="tooltip"
+               class="tooltip tooltip-validation tooltip-md">
+          <input id="psd" placeholder="Enter Password"
+                 name="psd"
+                 type="password"
+                 formControlName="psd" required>
+        </label>
+      </div>
+      <div class="form-group">
+        <label for="repsd">Confirm Password</label>
+        <label for="repsd"
+               aria-haspopup="true"
+               role="tooltip"
+               class="tooltip tooltip-validation tooltip-md">
+          <input id="repsd" placeholder="Reenter Password"
+                 name="repsd"
+                 type="password"
+                 formControlName="repsd" required>
+        </label>
+      </div>
+      <div class="form-group">
+        <label for="dateControl">Date of Birth</label>
+        <input id="dateControl" type="date" clrDate formControlName="dob" required>
+      </div>
+      <div class="form-group">
+        <label for="empType">User type</label>
+        <div class="select">
+          <select id="empType"
+                  name="role"
+                  formControlName="role" required>
+            <option value="Default">Select User Type...</option>
+            <option *ngFor="let type of userType" [value]="type.value">{{type.value}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+      <label for="empGender">Gender</label>
+      <div class="select">
+        <select id="empGender"
+                name="employeeGender" formControlName="gender" required>
+          <option value="Default">Select User Gender...</option>
+          <option *ngFor="let ge of gender" [value]="ge.value">{{ge.value}}</option>
+        </select>
+      </div>
+    </div>
+      <br>
+    </section>
+    </form>
+  </clr-wizard-page>
+
+  <clr-wizard-page [clrWizardPageNextDisabled]="form2.invalid">
+    <form [formGroup]="form2">
+    <section class="form-block">
+    <ng-template clrPageTitle>Step 2</ng-template>
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input id="phone" type="text" formControlName="phone" placeholder="Enter Phone Number">
+    </div>
+
+    <div class="form-group">
+      <label for="empRace">Race</label>
+      <div class="select">
+        <select id="empRace"
+                name="race" formControlName="race" required>
+          <option value="Default">Select User Race...</option>
+          <option *ngFor="let race of races" [value]="race.value">{{race.viewValue}}</option>
+        </select>
+      </div>
+    </div>
+
+           <div class="form-group">
+        <label for="empMarital">Marital Status</label>
+        <div class="select">
+          <select id="empMarital"
+                  name="marital" formControlName="marital" required>
+            <option value="Default">Select User Marital Status...</option>
+            <option *ngFor="let mar of maritals" [value]="mar.value">{{mar.viewValue}}</option>
+          </select>
+        </div>
+      </div>
+    </section>
+    </form>
+  </clr-wizard-page>
+
+  <!-- Security Questions-->
+  <clr-wizard-page [clrWizardPageNextDisabled]="form3.invalid">
+    <ng-template clrPageTitle>Step 3</ng-template>
+    <form [formGroup]="form3">
+      <section class="form-block">
+        <div *ngFor="let t of time">
+        <div class="form-group">
+          <label>{{t.id}} .Security Question</label>
+          <div class="select">
+            <select name="secq1"
+                    [(ngModel)]="t.question" [formControlName]="t.qid" required>
+              <option *ngFor="let ques of secureQue" [value]="ques.value">{{ques.value}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>&nbsp; &nbsp; Security Answer</label>
+          <input type="text" [(ngModel)]="t.answer" [formControlName]="t.aid" placeholder="Enter Answer" size="38">
+        </div>
+        </div>
+      </section>
+    </form>
+  </clr-wizard-page>
+  <clr-wizard-page [clrWizardPageNextDisabled]="form1.invalid || form2.invalid || form3.invalid">
+    <ng-template clrPageTitle>Confirmation</ng-template>
+    <ul class="list">
+      <li><label>User Name: </label><span class="confirm-info"> {{ form1.get('username').value }}</span></li>
+      <li><label>First Name: </label><span class="confirm-info"> {{ form1.get('firstname').value }}</span></li>
+      <li><label>Last Name: </label><span class="confirm-info"> {{ form1.get('lastname').value }}</span></li>
+      <li><label>Role: </label><span class="confirm-info"> {{ form1.get('role').value }}</span></li>
+      <li><label>Gender: </label><span class="confirm-info"> {{ form1.get('gender').value }}</span></li>
+      <li><label>Date of birth: </label><span class="confirm-info"> {{ form1.get('dob').value | date:"MM/dd/yy"}}</span></li>
+      <li><label>Phone: </label><span class="confirm-info"> {{ form2.get('phone').value }}</span></li>
+      <li><label>Race: </label><span class="confirm-info"> {{ form2.get('race').value }}</span></li>
+      <li><label>Marital Status: </label><span class="confirm-info"> {{ form2.get('marital').value }}</span></li>
+
+      <div *ngFor="let t of time">
+        <li><label>Security Question {{t.id}}: </label><span class="confirm-info"> {{t.question}}</span></li>
+        <li><label>Security Answer {{t.id}}: </label><span class="confirm-info"> {{t.answer}}</span></li>
+      </div>
+    </ul>
+  </clr-wizard-page>
+</clr-wizard>

@@ -1,0 +1,22 @@
+.left-card {
+  float: left;
+}
+
+.card {
+  width: 360px;
+  height: 600px;
+}
+
+
+.card-title {
+  margin-left: 10px;
+  color: #002538;
+}
+
+.pro-label {
+  width: 120px;
+}
+
+.progress-block {
+  padding-bottom: 5px;
+}

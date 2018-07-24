@@ -1,0 +1,56 @@
+<div class="main-container">
+  <div class="row">
+  <app-complete-card></app-complete-card>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+  <div class="card">
+    <div class="card-title">
+      <clr-icon shape="pencil" size="36"></clr-icon> &nbsp;
+      <span>Questionnaire</span>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-block">
+      <div class="card-text">
+        <clr-tabs>
+          <clr-tab>
+            <button clrTabLink>Questionnaire</button>
+            <clr-tab-content *clrIfActive>
+              <div class="start-left">
+                <img src="../../../../assets/questionnaire.png" class="picture">
+              </div>
+              <div class="start-right">
+                <h3>This is a new session for questionnaire.</h3>
+                <h6>Please choose a domain to start answer questions</h6>
+              </div>
+            </clr-tab-content>
+          </clr-tab>
+
+          <clr-tab *ngFor="let dom of domains">
+            <button clrTabLink (click)="getQuestionsByDomain(dom.id)">{{dom.domain}}</button>
+            <clr-tab-content>
+              <div *ngIf="form" style="padding-top: 10px; padding-left: 10px">
+                <form (ngSubmit)="onSubmit()" [formGroup]="form">
+                  <div *ngFor="let question of questions" class="form-row">
+                    <app-question [question]="question" [form]="form"></app-question>
+                  </div>
+                </form>
+              </div>
+            </clr-tab-content>
+          </clr-tab>
+        </clr-tabs>
+
+      </div>
+      <div class="card-footer">
+        <div *ngIf="isSubmitted">
+          <p style="font-size: 14px; padding-bottom: 5px;">Your answer for current domain has been submitted successfully.</p>
+        </div>
+        <div class="btn-group btn-primary" *ngIf="form">
+          <button class="btn btn-primary" type="submit" [disabled]="!form.valid" (click)="submitAns()">Submit</button>
+          <button class="btn btn-success">Reset</button>
+          <button class="btn btn-primary">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</div>

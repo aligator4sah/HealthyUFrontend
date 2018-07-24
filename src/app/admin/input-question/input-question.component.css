@@ -1,0 +1,76 @@
+.card-title {
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+
+.btn .btn-link .nav-link {
+  font-size: 16px;
+}
+
+.main-container {
+  height: 100%;
+}
+
+.card {
+  width: 1130px;
+  height: 580px;
+}
+
+
+.row {
+  padding-left: 11px;
+}
+
+
+.card-block {
+  height: 85%;
+  overflow: auto;
+  margin-bottom: 10px;
+}
+
+
+.card-text {
+  overflow: auto;
+}
+
+.card-footer {
+  position: absolute;
+  bottom: 10px;
+}
+
+.form {
+  width: 95%;
+  overflow: auto;
+}
+
+.form-block {
+  width: 95%;
+}
+
+.ansGroup {
+  width: 98%;
+  overflow: auto;
+}
+
+
+.question-info {
+  margin-left: 15px;
+  width: 90%;
+}
+
+
+.ques-info {
+  padding-bottom: 10px;
+}
+
+p {
+  margin-top: 5px;
+}
+
+.confirmation {
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #002538;
+}

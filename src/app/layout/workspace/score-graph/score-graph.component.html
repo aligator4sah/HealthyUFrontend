@@ -1,0 +1,56 @@
+<div class="main-container">
+  <div class="row">
+    <app-complete-card></app-complete-card>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="card-title">
+          <clr-icon shape="bar-chart" size="36"></clr-icon> &nbsp;
+          <span>Well-being Score Visualization</span>
+        </div>
+
+        <div class="card-block">
+          <div class="row">
+            <div class="col-md-7" style="padding-left: 20px; margin-right: 10px">
+              <h4 style="padding-bottom: 10px">Your Well-being Score</h4>
+              <div style="display: block; width: 600px">
+                <canvas baseChart
+                        [datasets]="barChartData"
+                        [labels]="barChartLabels"
+                        [options]="barChartOptions"
+                        [legend]="barChartLegend"
+                        [chartType]="barChartType"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <h4 style="padding-bottom: 20px">Session Information</h4>
+              <ul class="list">
+                <li>Session Id: 1</li>
+                <li>Session Date: 12/04/2018</li>
+                <li *ngFor="let item of domains">{{item.value}} Completion: </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="row">
+            <table class="table table-responsive table-condensed">
+              <tr>
+                <th>Type</th>
+                <th *ngFor="let label of barChartLabels">{{label}}</th>
+              </tr>
+              <tr *ngFor="let d of barChartData">
+                <td>{{d.label}}</td>
+                <td *ngFor="let label of barChartLabels; let j=index">{{d && d.data[j]}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <button class="btn btn-primary" routerLink="/dashboard/session-list">Back</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

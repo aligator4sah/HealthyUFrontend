@@ -1,0 +1,68 @@
+<div class="main-container">
+  <div class="row">
+    <app-complete-card></app-complete-card>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+      <div class="card top-card">
+        <div class="card-title">
+          <clr-icon shape="home" size="36"></clr-icon> &nbsp;
+          <span>Dashboard</span>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-block">
+          <div class="card-text">
+           <!-- general graph place-->
+            <div class="row">
+              <!--time line chart -->
+              <div class="col-md-7" style="padding-left: 20px; padding-right: 25px">
+                <h4 style="padding-bottom: 15px">Score change over time</h4>
+                <canvas baseChart style="margin-top: 5px; height: 400px"
+                        [datasets]="lineChartData"
+                        [labels]="lineChartLabels"
+                        [chartType]="lineChartType"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+              </div>
+
+              <!--score list-->
+              <div class="col-md-4">
+                  <div class="form-group">
+                    <form [formGroup]="domainForm">
+                      <section class="form-block">
+                        <label style="font-size: 18px; color: darkblue; padding-bottom: 25px; margin-top: 20px">Select Domains to check changes</label>
+                        <div class="form-group" style="padding-left: 20px">
+                          <label style="width: 3px"></label>
+                          <div class="radio">
+                            <input type="radio" name="domain" id="Overall" formControlName="domain" value="Overall">
+                            <label for="Overall" style="font-size: 15px">Overall</label>
+                          </div>
+                          <div class="radio" *ngFor="let item of domains1">
+                            <input type="radio" name="domain" id="{{item.id}}" formControlName="domain" value="{{item.id}}">
+                            <label for="{{item.id}}">{{item.domain}} </label>
+                          </div>
+                        </div>
+                      </section>
+                    </form>
+                  </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        <div class="card-footer">
+          <!--Session graph (if exist) -->
+          <a class="label label-purple clickable"> Session 1
+            <span class="badge">4</span>
+          </a>
+          <a class="label label-blue clickable"> Session 2
+            <span class="badge">3</span>
+          </a>
+          <a class="label label-orange clickable"> Total
+            <span class="badge">7</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

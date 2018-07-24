@@ -1,0 +1,43 @@
+<header class="header header-6">
+  <div class="branding">
+    <a routerLink="/dashboard" class="logo-and-title">
+      <clr-icon shape="vm-bug"></clr-icon>
+      <span class="title">Pitt Well</span>
+    </a>
+  </div>
+  <div class="header-nav">
+    <div *ngIf="!isAdmin; else adminHeader">
+      <a routerLink="/dashboard" class="nav-link"><span class="nav-text">Dashboard</span></a>
+      <a routerLink="/dashboard/question" class="nav-link"><span class="nav-text">Questionnaire</span></a>
+      <a routerLink="/dashboard/session-list" class="nav-link"><span class="nav-text">Sessions</span></a>
+      <!--<a routerLink="/dashboard/demographic" class="nav-link"><span class="nav-text">Demographic</span></a>-->
+    </div>
+    <ng-template #adminHeader>
+      <a routerLink="/adminDashboard" class="nav-link"><span class="nav-text">Dashboard</span></a>
+      <a routerLink="/adminDashboard/input-question" class="nav-link"><span class="nav-text">Questions</span></a>
+      <a routerLink="/adminDashboard/input-domain" class="nav-link"><span class="nav-text">Domains</span></a>
+      <a routerLink="/adminDashboard/ques-manage" class="nav-link"><span class="nav-text">Question List</span></a>
+    </ng-template>
+  </div>
+  <div class="header-actions">
+    <clr-dropdown>
+      <button class="nav-icon" clrDropdownTrigger>
+        <clr-icon shape="cog"></clr-icon>
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+        <div *ngIf="isAdmin; else user">
+          <a routerLink="/admin" clrDropdownItem>Log out</a>
+        </div>
+        <ng-template #user>
+          <a routerLink="/dashboard/profile" clrDropdownItem>Edit Profile</a>
+          <a routerLink="/login" clrDropdownItem>Log out</a>
+        </ng-template>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+  </div>
+</header>
+
+
+
+

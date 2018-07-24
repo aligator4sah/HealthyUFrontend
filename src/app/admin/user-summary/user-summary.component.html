@@ -1,0 +1,64 @@
+<div class="main-container">
+  <div class="row">
+    <app-admin-card></app-admin-card>
+      <div class="row">
+        <div class="left-card">
+            <div class="card clickable" style="width: 730px; height: 95.1%">
+              <div class="card-title">
+                <clr-icon shape="add-text" size="36"></clr-icon> &nbsp;
+                <span> Well-being score</span>
+              </div>
+              <div class="card-block">
+                <div style="display: block; width: 720px; padding-top: 10px">
+                  <canvas baseChart
+                          [datasets]="barChartData"
+                          [labels]="barChartLabels"
+                          [options]="barChartOptions"
+                          [legend]="barChartLegend"
+                          [chartType]="barChartType"
+                          (chartHover)="chartHovered($event)"
+                          (chartClick)="chartClicked($event)"></canvas>
+                </div>
+              </div>
+              <div class="card-footer">
+                <!--<button class="btn btn-sm btn-link">Detail</button>-->
+                <button class="btn btn-sm btn-link" routerLink="/adminDashboard/data-summary">Back</button>
+              </div>
+            </div>
+        </div>
+
+        <div class="right-card">
+          <div class="card clickable" style="width: 360px; height: 95.1%">
+            <div class="card-title">
+              <clr-icon shape="add-text" size="36"></clr-icon> &nbsp;
+              <span> Basic Information Ratio</span>
+            </div>
+            <div class="card-block">
+              <div style="display: block; padding-top: 30px">
+                <canvas baseChart
+                        [data]="doughnutChartData"
+                        [labels]="doughnutChartLabels"
+                        [chartType]="doughnutChartType"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
+            <div class="card-footer">
+
+                <div class="form-group" style="padding-top: 5px; paddding-left: 10px; margin-left: 8px;">
+                  <form [formGroup]="attrForm">
+                  <label style="font-size: 16px; color: darkblue; padding-bottom: 18px">Select User Attribute</label>
+                  <div class="radio" *ngFor="let item of attributs">
+                    <input type="radio" name="attribute" [id]="item.value" formControlName="attribute" [value]="item.value">
+                    <label [for]="item.value"> {{ item.label }}</label>
+                  </div>
+                  </form>
+                </div>
+
+              <h5>Current Attribute: <span> {{ selectedAttribute }}</span></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

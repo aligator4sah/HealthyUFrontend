@@ -1,0 +1,41 @@
+<div class="main-container">
+  <div class="row">
+    <app-admin-card></app-admin-card>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+      <!-- input question part -->
+      <div class="card">
+        <div class="card-title">
+          <clr-icon shape="add-text" size="36"></clr-icon> &nbsp;
+          <span>Domain Management</span>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-block">
+          <ul class="list">
+            <li *ngFor="let dom of domains">
+              {{ dom.domain }}
+              <span class="weight"> Weight: {{ dom.weight }}</span>
+              <clr-icon shape="trash" class="is-solid is-error delete" size="22" (click)="deleteDomain(dom.id)"></clr-icon>
+            </li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <a class="btn btn-primary" (click)="addDomain()">Add Domain</a>
+        </div>
+        <!--create new domain -->
+        <div *ngIf="createDom" class="domain-input">
+          <form [formGroup]="form">
+            <section class="form-block">
+              <div class="form-group">
+                <label for="formFields_1">Input Domain and Weight</label>
+                <input type="text" id="formFields_1" placeholder="Domain" size="30" formControlName="domain">
+                <input type="number" id="formFields_2" placeholder="Weight" size="20" formControlName="weight">
+              </div>
+            </section>
+            <button type="button" class="btn btn-secondary" (click)="submit()">Submit</button>
+          </form>
+        </div>
+
+      </div>
+      </div>
+    </div>
+  </div>

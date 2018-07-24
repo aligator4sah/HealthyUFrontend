@@ -1,0 +1,57 @@
+ <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+   <div class="card">
+     <div class="card-header">
+       User Information
+     </div>
+     <div class="card-block">
+       <div class="card-media-block">
+         <img src="../../../../assets/user.png" class="card-media-image">
+         <div class="card-media-description">
+           <span class="card-media-title" style="padding-bottom: 5px"> Name: {{ curUser.username }} </span>
+           <span class="card-media-text"> Role: {{curUser.role}} </span>
+         </div>
+       </div>
+       <br>
+       <div class="row">
+         <h4 class="card-title"><strong>Session Overview</strong></h4>
+         <div class="toggle-switch">
+           <input type="checkbox" id="toggle_4">
+           <label for="toggle_4"></label>
+         </div>
+       </div>
+       <p class="card-text">Total Session Number: {{ sessionNum }}</p>
+       <br>
+       <div class="progress-block">
+         <label class="pro-label">Physical</label>
+         <div class="progress-static">
+           <div class="progress-meter" data-value="20"></div>
+         </div>
+       </div>
+       <div class="progress-block">
+         <label class="pro-label">Emotional</label>
+         <div class="progress-static">
+           <div class="progress-meter" data-value="50"></div>
+         </div>
+       </div>
+       <div class="progress-block">
+         <label class="pro-label">Social</label>
+         <div class="progress success">
+           <progress value="44" max="100" data-displayval="...%"></progress>
+         </div>
+       </div>
+       <div class="progress-block">
+         <label class="pro-label">Financial</label>
+         <div class="progress success">
+           <progress value="58" max="100" data-displayval="...%"></progress>
+         </div>
+       </div>
+     </div>
+     <div class="card-footer">
+       <div class="progress-static top">
+         <div class="progress-meter" data-value="..."></div>
+       </div>
+       <button class="btn btn-link" routerLink="session-list">More Detail</button>
+     </div>
+     <app-footer></app-footer>
+   </div>
+ </div>

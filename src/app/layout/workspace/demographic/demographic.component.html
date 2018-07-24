@@ -1,0 +1,32 @@
+<div class="main-container">
+  <div class="row">
+    <app-complete-card></app-complete-card>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="card-title">
+          <clr-icon shape="pinboard" size="36"></clr-icon> &nbsp;
+          <span>Demographic Question</span>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-block">
+          <div class="card-text">
+            <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+              <div *ngFor="let question of questions" class="form-row">
+                <app-question [question]="question" [form]="form"></app-question>
+              </div>
+            </form>
+
+            <div *ngIf="payLoad" class="form-row">
+              <strong>Saved the following values</strong><br>{{payLoad}}
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-success" type="submit" [disabled]="!form.valid">Submit</button>
+            <button class="btn btn-primary">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

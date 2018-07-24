@@ -1,0 +1,39 @@
+<clr-modal [(clrModalOpen)]="basic" [clrModalSize]="'lg'">
+  <h3 class="modal-title">Please input your security questions and answers</h3>
+  <div class="modal-body">
+    <form [formGroup]="form3">
+      <section class="form-block">
+        <div class="form-group">
+          <label for="empUserName">User name</label>
+          <label for="empUserName"
+                 aria-haspopup="true"
+                 role="tooltip"
+                 class="tooltip tooltip-validation tooltip-md">
+            <input type="text" id="empUserName" placeholder="Enter User name"
+                   name="username" formControlName="username" size="38">
+            <span class="tooltip-content"> User Name is Required. </span>
+          </label>
+        </div>
+        <div *ngFor="let t of time">
+          <div class="form-group">
+            <label>{{t.id}} .Security Question</label>
+            <div class="select">
+              <select name="secq1"
+                      [(ngModel)]="t.question" [formControlName]="t.qid" required>
+                <option *ngFor="let ques of secureQue" [value]="ques.value">{{ques.value}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>&nbsp; &nbsp; Security Answer</label>
+            <input type="text" [(ngModel)]="t.answer" [formControlName]="t.aid" placeholder="Enter Answer" size="38">
+          </div>
+        </div>
+      </section>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="basic = false">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="basic = false">Submit</button>
+  </div>
+</clr-modal>

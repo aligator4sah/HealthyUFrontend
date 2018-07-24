@@ -1,0 +1,17 @@
+.copy-right {
+  font-size: 11px;
+  margin-top: 1px;
+}
+
+.company {
+  font-size: 12px;
+  color: #002538;
+}
+
+.footer {
+  margin-left: 16px;
+  bottom: 18px;
+  height: 60px;
+  width: 200px;
+  position: absolute;
+}

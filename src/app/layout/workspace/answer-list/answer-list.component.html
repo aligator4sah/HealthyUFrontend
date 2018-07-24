@@ -1,0 +1,56 @@
+<div class="main-container">
+  <div class="row">
+    <app-complete-card></app-complete-card>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+      <div class="card top-card">
+        <div class="card-title">
+          <clr-icon shape="view-list" size="36"></clr-icon> &nbsp;
+          <span>Answer List</span>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-block">
+          <div class="card-text">
+            <!--Answer table -->
+            <div class="row">
+              <clr-datagrid style="width: 95%; height: 90%; padding-left:15px">
+                <clr-dg-column style="width: 490px" [clrDgField]="'label'">Description
+                  <clr-dg-string-filter [clrDgStringFilter]="labelFilter"></clr-dg-string-filter>
+                </clr-dg-column>
+                <clr-dg-column [clrDgSortBy]="questionComparator" [clrDgField]="'order'">Order</clr-dg-column>
+                <clr-dg-column style="width: 160px" [clrDgField]="'domain'">Domain</clr-dg-column>
+                <clr-dg-column [clrDgSortBy]="weightComparator" [clrDgField]="'weight'">Weight</clr-dg-column>
+                <clr-dg-column [clrDgField]="'type'">Answer</clr-dg-column>
+
+                <clr-dg-row *ngFor="let ans of answers">
+                  <clr-dg-cell style="width: 490px">{{ans.questionnaire.label}}</clr-dg-cell>
+                  <clr-dg-cell>{{ans.questionnaire.order}}</clr-dg-cell>
+
+                  <clr-dg-cell style="width: 160px">{{ans.questionnaire.domain}}</clr-dg-cell>
+                  <clr-dg-cell>{{ans.questionnaire.weight}}</clr-dg-cell>
+                  <clr-dg-cell>{{ans.answer.answer.value}}</clr-dg-cell>
+
+                  <!--<clr-dg-action-overflow>-->
+                    <!--<button class="action-item" (click)="onEdit(ques.id)">Check</button>-->
+                    <!--<button class="action-item" (click)="onDelete(ques.id)">Delete</button>-->
+                  <!--</clr-dg-action-overflow>-->
+                </clr-dg-row>
+
+                <clr-dg-footer>
+                  <!--TODO: check again when more than 10 questions are added -->
+                  <clr-dg-pagination #pagination [clrDgPageSize]="10">
+                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                    of {{pagination.totalItems}} questions
+                  </clr-dg-pagination>
+                </clr-dg-footer>
+              </clr-datagrid>
+            </div>
+            <!-- end of the answer table-->
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" routerLink="/dashboard/session-list">Back</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

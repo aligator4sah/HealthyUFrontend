@@ -1,0 +1,65 @@
+<div class="main-container">
+  <div class="row">
+    <app-admin-card></app-admin-card>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+      <!-- input question part -->
+      <div class="card">
+        <div class="card-title">
+          <clr-icon shape="library" size="36"></clr-icon> &nbsp;
+          <span>Question Detail</span>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-block">
+          <div class="card-text">
+            <div class="question-info">
+              <!--question description -->
+              <div class="ques-info">
+                <h6>Question Description:
+                  <span class="confirmation"> {{question.label}}</span></h6>
+              </div>
+
+              <!--question order-->
+              <div class="ques-info">
+                <h6>Question Order:
+                  <span class="confirmation"> {{question.order}}</span></h6>
+              </div>
+
+              <!-- question answer type-->
+              <div class="ques-info">
+                <h6>Question Answer Type:
+                  <span class="confirmation"> {{question.type}}</span> </h6>
+              </div>
+
+              <!--question domain and weight if needed -->
+                <!--domain -->
+                <div class="ques-info">
+                  <h6>Question Domain:
+                    <span class="confirmation"> {{question.domain}}</span> </h6>
+                </div>
+
+                <!--weight -->
+                <div class="ques-info">
+                  <h6>Question Weight:
+                    <span class="confirmation"> {{question.weight}}</span> </h6>
+                </div>
+
+              <!-- answer options if needed -->
+              <div *ngFor="let opt of question.ansOptions">
+                <div class="ques-info">
+                  <h6>Answer Options: {{opt.key + 1}}
+                    <span class="confirmation">Description: {{ opt.value }}</span>
+                    <span class="confirmation">Weight: {{ opt.extent }}</span>
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <!--<button class="btn btn-primary" (click)="edit()">Edit</button>-->
+            <button class="btn btn-success" (click)="back()">Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
