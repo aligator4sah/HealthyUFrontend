@@ -35,7 +35,7 @@ export class QuesManageComponent implements OnInit {
   }
 
   onEdit(id: number) {
-    this.stateService.selectedQuestion.next(id);
+    this.stateService.selectedQuestion$.next(id);
     this.route.navigateByUrl('/adminDashboard/edit-question')
   }
 

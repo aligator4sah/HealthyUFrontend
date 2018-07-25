@@ -5,7 +5,7 @@ import {BehaviorSubject} from 'rxjs';
 export class StateService {
 
   curSession$:BehaviorSubject<number> = new BehaviorSubject<number>(-1);
-  selectedQuestion:BehaviorSubject<number> = new BehaviorSubject<number>(-1);
+  selectedQuestion$:BehaviorSubject<number> = new BehaviorSubject<number>(-1);
   token$:BehaviorSubject<String> = new BehaviorSubject<String>("");
 
   constructor() { }

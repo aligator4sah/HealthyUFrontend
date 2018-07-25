@@ -16,17 +16,17 @@ export class EditQuestionComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.getQuestionById(this.stateService.selectedQuestion.getValue());
+    this.getQuestionById(this.stateService.selectedQuestion$.getValue());
   }
 
   ngOnDestroy() {
-    this.stateService.selectedQuestion.next(-1);
+    this.stateService.selectedQuestion$.next(-1);
   }
 
   getQuestionById(id: number) {
     this.questionService.getQuestionById(id).subscribe(value => {
       this.question = value;
-      console.log(this.question);
+      //console.log(this.question);
     })
   }
 
