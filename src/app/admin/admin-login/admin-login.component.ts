@@ -21,6 +21,9 @@ export class AdminLoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.stateService.token$.next("");
+    });
     this.form = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -35,9 +38,15 @@ export class AdminLoginComponent implements OnInit {
       role: 'Admin'
     };
     this.userService.loginCheck(logInfo).subscribe(value => {
-      if (value.status != false) {
+      if (value && value.status != false) {
         this.stateService.token$.next(value.accessToken);
-        localStorage.setItem('curRole', 'admin');
+        const curUser = {
+          id: value.id,
+          username: this.form.controls['username'].value,
+          role: "admin",
+          token: value.accessToken
+        };
+        localStorage.setItem('curUser', JSON.stringify(curUser));
         this.router.navigateByUrl('adminDashboard');
       } else {
         this.invalidLogin = true;

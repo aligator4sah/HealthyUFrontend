@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-card.component.css']
 })
 export class AdminCardComponent implements OnInit {
+  admin = JSON.parse(localStorage.getItem('curUser'));
 
   constructor() { }
 

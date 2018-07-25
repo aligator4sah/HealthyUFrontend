@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    let role = localStorage.getItem('curRole');
+    let role = JSON.parse(localStorage.getItem('curUser')).role;
     if (role == 'admin') {
       this.isAdmin = true;
     }
