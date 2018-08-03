@@ -41,7 +41,7 @@
       </div>
       <div class="card-footer">
         <div *ngIf="isSubmitted">
-          <p style="font-size: 14px; padding-bottom: 5px;">Your answer for current domain has been submitted successfully.</p>
+          <p style="font-size: 14px; padding-bottom: 5px; color: #004a70;">Your answer for current domain has been submitted successfully.</p>
         </div>
         <div class="btn-group btn-primary" *ngIf="form">
           <button class="btn btn-primary" type="submit" [disabled]="!form.valid" (click)="submitAns()">Submit</button>

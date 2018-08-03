@@ -94,6 +94,7 @@ export class QuestionnaireComponent implements OnInit {
     };
     this.questionService.addQuestionAnswer(finalAnswer, this.session.id).subscribe(value => {
       console.log(value);
+      this.isSubmitted = true;
     })
   }
 
