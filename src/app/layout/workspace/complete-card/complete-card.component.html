@@ -12,15 +12,14 @@
          </div>
        </div>
        <br>
-       <div class="row">
-         <h4 class="card-title"><strong>Session Overview</strong></h4>
-         <div class="toggle-switch">
-           <input type="checkbox" id="toggle_4">
-           <label for="toggle_4"></label>
-         </div>
+       <div class="row" style="padding-bottom: 10px">
+         <h4 class="card-title"><strong>Session Completion Summary</strong></h4>
+         <!--<div class="toggle-switch">-->
+           <!--<input type="checkbox" id="toggle_4">-->
+           <!--<label for="toggle_4"></label>-->
+         <!--</div>-->
        </div>
-       <p class="card-text">Total Session Number: {{ sessionNum }}</p>
-       <br>
+       <p class="card-text" style="padding-bottom: 10px">Total Session Number: {{ sessionNum }}</p>
        <div class="progress-block">
          <label class="pro-label">Physical</label>
          <div class="progress-static">
@@ -63,6 +62,7 @@
            <progress value="27" max="100" data-displayval="...%"></progress>
          </div>
        </div>
+       <div style="padding-bottom: 10px"></div>
      </div>
 
      <app-footer></app-footer>
